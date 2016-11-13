@@ -15,6 +15,44 @@ public class Student implements Parcelable{
     private int rating;
     private String country;
     private String nationality;
+    private boolean isSelected;
+    private String loginHash;
+
+    public String getLoginHash() {
+        return loginHash;
+    }
+
+    public void setLoginHash(String loginHash) {
+        this.loginHash = loginHash;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if (obj == this) return true;
+        if (!(obj instanceof Student))return false;
+        Student student = (Student) obj;
+        if(!this.name.equals(((Student) obj).name)){
+            return false;
+        }
+        if(!this.surname.equals(((Student) obj).surname)){
+            return false;
+        }
+        if (!this.yearthOfbirth.equals(((Student) obj).yearthOfbirth)){
+            return false;
+        }
+        else{
+            return  true;
+        }
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
 
     public String getCountry() {
         return country;
@@ -40,10 +78,13 @@ public class Student implements Parcelable{
         this.rating = rating;
         this.country = country;
         this.nationality = nationality;
+        this.isSelected = false;
+        this.loginHash="";
+
     }
 
     public Student(Parcel in){
-        String[] data = new String[7];
+        String[] data = new String[9];
         in.readStringArray(data);
         name = data[0];
         surname = data[1];
@@ -52,6 +93,8 @@ public class Student implements Parcelable{
         rating = Integer.valueOf(data[4]);
         country=data[5];
         nationality = data[6];
+        isSelected = Boolean.getBoolean(data[7]);
+        loginHash = data[8];
     }
 
     @Override
@@ -61,7 +104,7 @@ public class Student implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeStringArray(new String[]{name,surname, Integer.toString(age),yearthOfbirth,Integer.toString(rating),country,nationality});
+        dest.writeStringArray(new String[]{name,surname, Integer.toString(age),yearthOfbirth,Integer.toString(rating),country,nationality,Boolean.toString(isSelected),loginHash});
     }
 
     public static final Parcelable.Creator<Student> CREATOR = new Parcelable.Creator<Student>() {

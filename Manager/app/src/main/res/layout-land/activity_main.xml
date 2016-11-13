@@ -11,24 +11,6 @@
     tools:context="com.example.kirill.manager.MainActivity">
 
 
-    <TextView
-        android:text="Логин"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="111dp"
-        android:id="@+id/textView4"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:text="Пароль"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/loginText"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="13dp"
-        android:id="@+id/textView5" />
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -70,4 +52,21 @@
         android:layout_alignStart="@+id/registrationText"
         android:layout_marginTop="10dp"
         android:onClick="onEnterButtonClick"/>
+
+    <TextView
+        android:text="Логин"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Пароль"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView5"
+        android:layout_below="@+id/loginText"
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_alignStart="@+id/textView4" />
 </RelativeLayout>

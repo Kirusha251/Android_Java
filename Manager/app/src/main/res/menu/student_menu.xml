@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".PersonInfoActivity">
+
+    <item
+        android:id="@+id/changeData"
+        android:title="Изменить данные"
+        android:onClick="changeDataClick"
+        />
+    <item
+        android:id="@+id/deleteProfile"
+        android:title="Удалить профиль"
+        android:onClick="deleteUserClick"
+        />
+    <item
+        android:id="@+id/exit"
+        android:title="Выйти"
+        android:onClick="exitClick"
+        />
+
+</menu>

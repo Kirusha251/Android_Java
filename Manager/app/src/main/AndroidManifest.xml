@@ -18,7 +18,10 @@
         <activity android:name=".OtherData" />
         <activity android:name=".FullNameActivity" />
         <activity android:name=".ConfirmPageActivity" />
-        <activity android:name=".BirthdayActivity"></activity>
+        <activity android:name=".BirthdayActivity" />
+        <activity android:name=".AdminPageActivity" />
+        <activity android:name=".PersonInfoActivity" />
+        <activity android:name=".RegistrationActivity"></activity>
     </application>
 
 </manifest>

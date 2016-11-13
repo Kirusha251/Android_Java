@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.kirill.manager.container.Container;
 import com.example.kirill.manager.units.Student;
 
 public class ConfirmPageActivity extends AppCompatActivity {
@@ -51,7 +52,7 @@ public class ConfirmPageActivity extends AppCompatActivity {
     }
 
     public void onClickConfirmButton(View v){
-        Intent intent = new Intent(ConfirmPageActivity.this,MainActivity.class);
+        Intent intent = new Intent(ConfirmPageActivity.this,PersonInfoActivity.class);
         intent.putExtra("student",student);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
@@ -59,5 +60,9 @@ public class ConfirmPageActivity extends AppCompatActivity {
     }
     public void onClickPrevButtonC(View v){
         onBackPressed();
+    }
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putParcelable("student",student);
     }
 }
