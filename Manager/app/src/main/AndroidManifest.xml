@@ -21,7 +21,7 @@
         <activity android:name=".BirthdayActivity" />
         <activity android:name=".AdminPageActivity" />
         <activity android:name=".PersonInfoActivity" />
-        <activity android:name=".RegistrationActivity"></activity>
+        <activity android:name=".RegistrationActivity" />
     </application>
 
 </manifest>

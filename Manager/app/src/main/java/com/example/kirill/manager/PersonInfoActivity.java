@@ -46,7 +46,7 @@ public class PersonInfoActivity extends AppCompatActivity {
         }
         if(getIntent().getParcelableExtra("student")!=null){
             student = (Student) getIntent().getParcelableExtra("student");
-            Container.addStudent(student);
+            Container.getStudentList();
             name.setText(name.getText().toString()+" "+student.getName());
             surname.setText(surname.getText().toString()+" "+student.getSurname());
             age.setText(age.getText().toString()+" "+Integer.toString(student.getAge()));
@@ -86,7 +86,7 @@ public class PersonInfoActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void deleteUserClick(MenuItem menuItem){
-        Container.studentList.remove(student);
+        Container.deleteStudent(student);
         deleteFromSharedPreferenceFile(getApplicationContext(),student.getLoginHash());
         Intent intent = new Intent(this,MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -102,7 +102,6 @@ public class PersonInfoActivity extends AppCompatActivity {
 
     }
     public void exitClick(MenuItem menuItem){
-        Container.SaveToInternalStorage(getFilesDir(),"fileName.json");
         Intent intent = new Intent(this,MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);

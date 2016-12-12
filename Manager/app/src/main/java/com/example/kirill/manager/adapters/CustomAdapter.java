@@ -16,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kirill.manager.R;
+import com.example.kirill.manager.StudentDetailFragment;
+import com.example.kirill.manager.StudentListFragment;
 import com.example.kirill.manager.units.Student;
 
 import java.util.ArrayList;
@@ -24,7 +26,7 @@ import java.util.ArrayList;
  * Created by Kirill on 26.10.2016.
  */
 
-public class CustomAdapter extends ArrayAdapter<Student> {
+public class CustomAdapter extends ArrayAdapter<Student>{
    public ArrayList<Student> studentList = null;
     Context context;
     LayoutInflater inflater;

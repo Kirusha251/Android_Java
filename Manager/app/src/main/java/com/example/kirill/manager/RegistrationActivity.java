@@ -38,6 +38,7 @@ public class RegistrationActivity extends AppCompatActivity {
                         Integer.toString(password.getText().toString().hashCode()));
                 student = new Student(" "," ",1," ",1," "," ");
                 student.setLoginHash(login.getText().toString());
+                student.setSelected(false);
                 Intent intent = new Intent(RegistrationActivity.this,FullNameActivity.class);
                 intent.putExtra("student",student);
                 startActivity(intent);

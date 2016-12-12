@@ -52,6 +52,7 @@ public class ConfirmPageActivity extends AppCompatActivity {
     }
 
     public void onClickConfirmButton(View v){
+        Container.insertStudent(student);
         Intent intent = new Intent(ConfirmPageActivity.this,PersonInfoActivity.class);
         intent.putExtra("student",student);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

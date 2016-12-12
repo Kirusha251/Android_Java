@@ -82,6 +82,18 @@ public class Student implements Parcelable{
         this.loginHash="";
 
     }
+    public Student(String name, String surname , int age, String yearthOfbirth, int rating, String country, String nationality,Boolean isSelected,String loginHash){
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.yearthOfbirth = yearthOfbirth;
+        this.rating = rating;
+        this.country = country;
+        this.nationality = nationality;
+        this.isSelected = isSelected;
+        this.loginHash=loginHash;
+
+    }
 
     public Student(Parcel in){
         String[] data = new String[9];

@@ -4,42 +4,29 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.PersistableBundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
-import android.widget.CheckedTextView;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.kirill.manager.adapters.CustomAdapter;
 import com.example.kirill.manager.container.Container;
-import com.example.kirill.manager.units.Student;
-import com.google.gson.Gson;
-
-import java.util.ArrayList;
-import java.util.Hashtable;
+import com.example.kirill.manager.database.MyDataBaseHelper;
 
 public class MainActivity extends AppCompatActivity {
 
     String fileName="PasswordFile";
     EditText login;
     EditText password;
-
+    MyDataBaseHelper dataBaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        dataBaseHelper =  new MyDataBaseHelper(getApplicationContext());
+        Container.dataBase = dataBaseHelper.getWritableDatabase();
         login = (EditText)findViewById(R.id.loginText);
         password = (EditText)findViewById(R.id.passwordText);
         if(savedInstanceState!=null){

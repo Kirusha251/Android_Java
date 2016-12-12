@@ -1,5 +1,9 @@
 package com.example.kirill.manager.container;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
 import com.example.kirill.manager.units.Student;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -14,17 +18,46 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 
 /**
  * Created by Kirill on 23.10.2016.
  */
 
 public  class Container {
+    public static SQLiteDatabase dataBase;
     public static ArrayList<Student> studentList = new ArrayList<>();
 
     public static void addStudent(Student student){
         studentList.add(student);
+    }
+    public static void insertStudent(Student student){
+        ContentValues values = new ContentValues();
+        values.put("NAME",student.getName());
+        values.put("SURNAME",student.getSurname());
+        values.put("AGE",student.getAge());
+        values.put("BIRTHDAY",student.getYearthOfbirth());
+        values.put("RATING",student.getRating());
+        values.put("COUNTRY",student.getCountry());
+        values.put("NATIONALITY",student.getNationality());
+        values.put("LOGINHASH",student.getLoginHash());
+        values.put("SELECTED",Boolean.toString(student.isSelected()));
+        dataBase.insert("Students",null,values);
+    }
+    public static void deleteStudent(Student student){
+        dataBase.delete("Students", "NAME=?", new String[]{student.getName()});
+    }
+    public static void updateStudent(Student student){
+        ContentValues values = new ContentValues();
+        values.put("NAME",student.getName());
+        values.put("SURNAME",student.getSurname());
+        values.put("AGE",student.getAge());
+        values.put("BIRTHDAY",student.getYearthOfbirth());
+        values.put("RATING",student.getRating());
+        values.put("COUNTRY",student.getCountry());
+        values.put("NATIONALITY",student.getNationality());
+        values.put("LOGINHASH",student.getLoginHash());
+        values.put("SELECTED",Boolean.toString(student.isSelected()));
+        dataBase.update("Students",values,"NAME=?",new String[]{student.getName()});
     }
     public static void removeStudent(int index){
         studentList.remove(index);
@@ -79,8 +112,29 @@ public  class Container {
         }
 
     }
+    public static Cursor getSelectedStudentsCursor(){
+        return dataBase.query("Students",new String[]{"_id","NAME","SURNAME","AGE","BIRTHDAY","RATING",
+                "COUNTRY","NATIONALITY","LOGINHASH","SELECTED"},"SELECTED=?",new String[]{Boolean.TRUE.toString()},null,null,null);
+    }
+    public static Cursor getStudentCursor(){
+        return dataBase.query("Students",new String[]{"_id","NAME","SURNAME","AGE","BIRTHDAY","RATING",
+                "COUNTRY","NATIONALITY","LOGINHASH","SELECTED"},null,null,null,null,null);
 
+    }
     public static ArrayList<Student> getStudentList() {
+        studentList.clear();
+        Cursor cursor = dataBase.query("Students",new String[]{"NAME","SURNAME","AGE","BIRTHDAY","RATING",
+        "COUNTRY","NATIONALITY","LOGINHASH","SELECTED"},null,null,null,null,null);
+        if(cursor.moveToFirst()){
+
+            do{
+
+                studentList.add(new Student(cursor.getString(0),cursor.getString(1),cursor.getInt(2),cursor.getString(3),
+                        cursor.getInt(4),cursor.getString(5),cursor.getString(6),Boolean.valueOf(cursor.getString(8)),cursor.getString(7)));
+            }
+            while(cursor.moveToNext());
+
+        }
         return Container.studentList;
     }
 
@@ -98,7 +152,6 @@ public  class Container {
         return null;
     }
     public static ArrayList<String> getStudentNames(){
-
             String[] studentNames = new String[studentList.size()];
             int i = 0;
             for (Student student : studentList

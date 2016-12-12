@@ -10,8 +10,13 @@
         />
     <item
         android:id="@+id/newB"
-        android:title="Удалить выделенные"
-        android:onClick="deleteSelectedClick"
+        android:title="Показать избранных"
+        android:onClick="getSelectedStudent"
+        />
+    <item
+        android:id="@+id/getAll"
+        android:title="Показать всех"
+        android:onClick="getAllStudents"
         />
     <item
         android:id="@+id/sort"
